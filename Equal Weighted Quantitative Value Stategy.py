@@ -31,29 +31,6 @@ def portfolio_input():
         print("That's not a number! \n Try again:")
         portfolio_size = input("Enter the value of your portfolio:")
 
-symbol = 'AAPL'
-
-batch_api_call_url = f'https://sandbox.iexapis.com/stable/stock/market/batch?symbols={symbol}&types=quote,advanced-stats&token={IEX_CLOUD_API_TOKEN}'
-data = requests.get(batch_api_call_url).json()
-
-# * Price-to-earnings ratio
-pe_ratio = data[symbol]['quote']['peRatio']
-
-# * Price-to-book ratio
-pb_ratio = data[symbol]['advanced-stats']['priceToBook']
-
-# * Price-to-sales ratio
-ps_ratio = data[symbol]['advanced-stats']['priceToSales']
-
-# * Enterprise Value divided by Earnings Before Interest, Taxes, Depreciation, and Amortization (EV/EBITDA)
-enterprise_value = data[symbol]['advanced-stats']['enterpriseValue']
-ebitda = data[symbol]['advanced-stats']['EBITDA']
-ev_to_ebitda = enterprise_value/ebitda
-
-# * Enterprise Value divided by Gross Profit (EV/GP)
-gross_profit = data[symbol]['advanced-stats']['grossProfit']
-ev_to_gross_profit = enterprise_value/gross_profit
-
 # RV = Robust value
 rv_columns = [
     'Ticker',
